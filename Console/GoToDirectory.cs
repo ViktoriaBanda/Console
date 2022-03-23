@@ -14,17 +14,27 @@ namespace Консоль
         public void PrintNewDirectory(string directoryName)
         {
             directoryName = Path.GetFullPath(directoryName, _myDirectory.CurrentDirectory.FullName);
+            var disks = DriveInfo.GetDrives();
         
             //существует ли директория:
             if (Directory.Exists(directoryName))
             {
                 _myDirectory.CurrentDirectory = new DirectoryInfo(directoryName);
                 Console.WriteLine(_myDirectory.CurrentDirectory.FullName);
+                return;
             }
-            else
+            
+            foreach (var disk in disks)
             {
-                Console.WriteLine("Директория не найдена");
+                if (disk.Name == directoryName)
+                {
+                    _myDirectory.CurrentDirectory = new DirectoryInfo(directoryName);
+                    Console.WriteLine(_myDirectory.CurrentDirectory.FullName);
+                    return;
+                }
             }
+
+            Console.WriteLine("Директория не найдена");
         }
     }
 }
