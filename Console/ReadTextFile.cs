@@ -1,11 +1,11 @@
 using System;
 using System.IO;
 
-namespace Консоль
+namespace MyConsole
 {
     public class ReadTextFile
     {
-        private MyDirectory _myDirectory;
+        private readonly MyDirectory _myDirectory;
 
         public ReadTextFile(MyDirectory myDirectory)
         {
@@ -40,12 +40,7 @@ namespace Консоль
 
         private bool IsFileText(FileSystemInfo file)
         {
-            if (file.Extension == ".txt")
-            {
-                return true;
-            }
-
-            return false;
+            return file.Extension == ".txt";
         }
     }
 }

@@ -1,12 +1,12 @@
 using System;
 using System.IO;
 
-namespace Консоль
+namespace MyConsole
 {
     public class MakeDirectory
     {
-        private MyDirectory _myDirectory;
-        private LocalStatement _localStatement;
+        private readonly MyDirectory _myDirectory;
+        //private LocalStatement _localStatement;
 
         public MakeDirectory(MyDirectory myDirectory)
         {
@@ -15,7 +15,6 @@ namespace Консоль
         
         public void CreateDirectory(string directoryName)
         {
-            //проверяем, существует ли уже такая директория
             directoryName = Path.GetFullPath(directoryName, _myDirectory.CurrentDirectory.FullName);
             
             if (Directory.Exists(directoryName))
@@ -25,8 +24,8 @@ namespace Консоль
             }
 
             Directory.CreateDirectory(directoryName);
-            _localStatement = new LocalStatement(new DirectoryInfo(directoryName).Parent.FullName);
-            _localStatement.PrintLocalStatement();
+            //_localStatement = new LocalStatement(new DirectoryInfo(directoryName).Parent?.FullName);
+            //_localStatement.PrintLocalStatement();
         }
     }
 }

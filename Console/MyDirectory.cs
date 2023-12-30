@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Консоль
+namespace MyConsole
 {
    public class MyDirectory
    {

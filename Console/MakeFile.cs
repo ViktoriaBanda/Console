@@ -1,12 +1,12 @@
 using System;
 using System.IO;
 
-namespace Консоль
+namespace MyConsole
 {
     public class MakeFile
     {
-        private MyDirectory _myDirectory;
-        private LocalStatement _localStatement;
+        private readonly MyDirectory _myDirectory;
+        //private LocalStatement _localStatement;
         
         public MakeFile(MyDirectory myDirectory)
         {
@@ -14,7 +14,6 @@ namespace Консоль
         }
         public void CreateFile(string fileName)
         {
-            //проверяем, существует ли уже такой файл
             fileName = Path.GetFullPath(fileName, _myDirectory.CurrentDirectory.FullName);
            
             if (File.Exists(fileName))
@@ -26,8 +25,8 @@ namespace Консоль
             try
             {
                 var newFile = File.Create(fileName);
-                _localStatement = new LocalStatement(new FileInfo(fileName).DirectoryName);
-                _localStatement.PrintLocalStatement();
+               // _localStatement = new LocalStatement(new FileInfo(fileName).DirectoryName);
+                //_localStatement.PrintLocalStatement();
                 newFile.Close();
             }
             catch (DirectoryNotFoundException exeption)
