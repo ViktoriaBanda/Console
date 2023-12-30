@@ -34,7 +34,7 @@ class CommandProcessor
         }
         else
         {
-            Console.WriteLine("Неизвестная команда. Чтобы посмотреть список всех команд введите help");
+            Console.WriteLine("Неизвестная команда. Чтобы посмотреть список всех команд, введите help");
         }
     }
 
