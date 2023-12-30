@@ -8,13 +8,19 @@ class CommandProcessor
 {
     public static DirectoryInfo CurrentDirectory = new(Directory.GetCurrentDirectory());
 
+    private static readonly PrintLocalStatementCommand _printLocalStatementCommand = new();
+
     private readonly Dictionary<string, ICommand> _commands = new()
     {
         { CommandsNames.GO_TO_DIRECTORY, new GoToDirectoryCommand() },
-        { CommandsNames.PRINT_LOCAL_STATEMENT, new PrintLocalStatementCommand() },
+        { CommandsNames.PRINT_LOCAL_STATEMENT, _printLocalStatementCommand },
         { CommandsNames.PRINT_WORKING_DIRECTORY, new PrintWorkingDirectoryCommand() },
-        {CommandsNames.CLEAR, new ConsoleClearCommand()},
-        {CommandsNames.HELP, new HelpCommand()}
+        { CommandsNames.CLEAR, new ConsoleClearCommand() },
+        { CommandsNames.HELP, new HelpCommand() },
+        { CommandsNames.GO_TO_PARENT_DIRECTORY, new GoToParentDirectoryCommand() },
+        { CommandsNames.READ_TEXT_FILE, new ReadTextFileCommand() },
+        { CommandsNames.CREATE_DIRECTORY, new CreateDirectoryCommand(_printLocalStatementCommand) },
+        { CommandsNames.CREATE_FILE, new CreateFileCommand(_printLocalStatementCommand) }
     };
 
     public void ProcessCommand(string commandLine)

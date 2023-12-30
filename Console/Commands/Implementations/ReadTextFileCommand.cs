@@ -1,24 +1,16 @@
 using System;
 using System.IO;
+using MyConsole;
 
-namespace MyConsole
-{
-    public class ReadTextFile
+internal class ReadTextFileCommand : ICommand
     {
-        private readonly MyDirectory _myDirectory;
-
-        public ReadTextFile(MyDirectory myDirectory)
+        public void Execute(string argument)
         {
-            _myDirectory = myDirectory;
-        }
-
-        public void PrintText(string fileName)
-        {
-            var subDirectories = _myDirectory.CurrentDirectory.GetFileSystemInfos();
+            var subDirectories = CommandProcessor.CurrentDirectory.GetFileSystemInfos();
             var wasFileFound = false;
             foreach (var f in subDirectories)
             {
-                if (Path.GetFileNameWithoutExtension(f.FullName) == fileName)
+                if (Path.GetFileNameWithoutExtension(f.FullName) == argument)
                 {
                     wasFileFound = true;
                     if (IsFileText(f))
@@ -43,4 +35,3 @@ namespace MyConsole
             return file.Extension == ".txt";
         }
     }
-}

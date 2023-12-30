@@ -1,6 +1,6 @@
 namespace MyConsole;
 
-public static class Extensions
+static class Extensions
 {
     public static string GetSubstringBeforeFirstSpace(this string originalString)
     {
